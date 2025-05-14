@@ -1,10 +1,12 @@
-import { Box, Image, Text } from '@chakra-ui/react'
+import { Box, HStack, Image } from '@chakra-ui/react'
 import { ColorModeButton } from './ui/color-mode'
 
 const NavBar = () => {
     return <Box>
-        <Image src="/image.png" boxSize="40px" float="left"/>
-        <ColorModeButton float="right"/>
+        <HStack justifyContent={"space-between"} >
+            <Image src="/image.png" boxSize="10" />
+            <ColorModeButton float="right"/>
+        </HStack>
     </Box>
 }
 
