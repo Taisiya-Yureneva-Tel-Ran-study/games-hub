@@ -5,6 +5,7 @@ export interface Game {
     name: string;
     background_image: string;
     metacritic: number;
+    platforms: PlatformObject[];
 }
 
 export interface FetchGamesResponse {
