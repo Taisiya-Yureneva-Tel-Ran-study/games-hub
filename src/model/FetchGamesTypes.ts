@@ -7,8 +7,3 @@ export interface Game {
     metacritic: number;
     platforms: PlatformObject[];
 }
-
-export interface FetchGamesResponse {
-    count: number;
-    results: Game[];
-}

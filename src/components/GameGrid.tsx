@@ -1,23 +1,12 @@
-import { useEffect, useState } from "react";
-import api from "../services/api-client";
-import { Game, FetchGamesResponse } from "../model/FetchGamesTypes";
+import { Game } from "../model/FetchGamesTypes";
 import { SimpleGrid } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import { ErrorBox } from "./ErrorBox";
+import useData from "../hooks/useData";
 
 const GameGrid = () => {
-    const [games, setGames] = useState<Game[]>();
-    const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        api.get<FetchGamesResponse>('/games').then(res => {
-            setGames(res.data.results);
-            setError(null);
-        }).catch(err => {
-            setError("Error fetching games. " + err.message);
-            setGames([]);
-        });
-    }, []);
+    const {error, data} = useData<Game>('/games');
+    const games = data;
     
     return error ? <ErrorBox error={error} /> :
         <SimpleGrid columns={{
