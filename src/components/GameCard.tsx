@@ -1,6 +1,6 @@
 import React from 'react';
 import { Game } from '../model/FetchGamesTypes';
-import { Badge, Box, Card, Float, Image, Text } from "@chakra-ui/react";
+import { Badge, Box, Card, Float, Image } from "@chakra-ui/react";
 
 interface GameCardProps {
     game: Game;
