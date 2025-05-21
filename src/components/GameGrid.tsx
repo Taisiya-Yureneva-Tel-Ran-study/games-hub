@@ -3,8 +3,12 @@ import GameCard from "./GameCard";
 import { ErrorBox } from "./ErrorBox";
 import useGame from "../hooks/useGame";
 
-const GameGrid = () => {
-    const {error, data, isLoading} = useGame();
+interface Props {
+    selectedGenre: string | null;
+}
+
+const GameGrid: React.FC<Props> = ({selectedGenre}) => {
+    const {error, data, isLoading} = useGame(selectedGenre);
     const games = data;
     
     return isLoading ? <Spinner size="xl" color="green.100" /> :

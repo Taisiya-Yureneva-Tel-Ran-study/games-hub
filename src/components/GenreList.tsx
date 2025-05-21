@@ -2,7 +2,12 @@ import { Avatar, Button, List, Spinner } from "@chakra-ui/react";
 import { ErrorBox } from "./ErrorBox";
 import useGenre from "../hooks/useGenre";
 
-const GenreList = () => {
+interface Props {
+    onSelectGenre: (genreSLug: string) => void;
+    selectedGenre: string | null;
+}
+
+const GenreList: React.FC<Props> = ({onSelectGenre, selectedGenre}) => {
     const { data, error, isLoading } = useGenre();
     const genre = data;
 
@@ -14,7 +19,10 @@ const GenreList = () => {
                         <Avatar.Image src={g.image_background} alt={g.name}>
                         </Avatar.Image> 
                     </Avatar.Root>
-                    <Button variant="ghost">
+                    <Button 
+                        onClick={() => onSelectGenre(g.slug)}
+                        fontWeight={g.slug === selectedGenre ? "bold" : "normal"}
+                        variant="ghost" >
                         {g.name}
                     </Button>
                 </List.Item>
