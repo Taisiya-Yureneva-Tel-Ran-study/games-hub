@@ -12,3 +12,6 @@ Platforms are wrapped in Badges
 Genre List is beautified with avatars and buttons.
 
 During loading of game cards and genre list spinners are shown. 
+
+#### HW #38
+Game Cards are enhanced with rating. The Rater component is reusable, number of stars may vary, maximal rating can be any number.

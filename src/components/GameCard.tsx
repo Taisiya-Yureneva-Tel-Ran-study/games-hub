@@ -1,6 +1,7 @@
 import React from 'react';
 import { Game } from '../model/FetchGamesTypes';
 import { Badge, Box, Card, Float, Image } from "@chakra-ui/react";
+import Rater from './Rater';
 
 interface GameCardProps {
     game: Game;
@@ -32,6 +33,9 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
                     })}
                 </Box>
             </Card.Body>
+            <Card.Footer>
+                <Rater maxRate={5} rate={game.rating} starsCount={5}/>
+            </Card.Footer>
         </Card.Root>)
 }
 

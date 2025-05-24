@@ -11,6 +11,14 @@ const GenreList: React.FC<Props> = ({onSelectGenre, selectedGenre}) => {
     const { data, error, isLoading } = useGenre();
     const genre = data;
 
+    function changeSelectedGenre(genreSlug: string) {
+        let vari = {colorPalette: "gray", fontWeight: "normal"};
+        if (genreSlug === selectedGenre) {
+            vari = {colorPalette: "green", fontWeight: "bold"};
+        }
+        return vari;
+    }
+
     return isLoading ? <Spinner size="xl" color="green.100" /> :
         error ? <ErrorBox error={error} /> :
             <List.Root overflowY={"auto"} variant={"plain"} padding={2} maxHeight={"80vh"}>
@@ -21,7 +29,7 @@ const GenreList: React.FC<Props> = ({onSelectGenre, selectedGenre}) => {
                     </Avatar.Root>
                     <Button 
                         onClick={() => onSelectGenre(g.slug)}
-                        fontWeight={g.slug === selectedGenre ? "bold" : "normal"}
+                        {...changeSelectedGenre(g.slug)}
                         variant="ghost" >
                         {g.name}
                     </Button>

@@ -7,4 +7,5 @@ export interface Game {
     metacritic: number;
     platforms: PlatformObject[];
     slug: string;
+    rating: number;
 }
