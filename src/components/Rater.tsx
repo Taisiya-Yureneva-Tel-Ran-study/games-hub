@@ -1,5 +1,5 @@
 import { HStack } from "@chakra-ui/react";
-import React from "react";
+import React, { useMemo } from "react";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import Predicate from "./utils/Predicate";
 
@@ -37,7 +37,7 @@ const Rater: React.FC<Props> = ({ maxRate, rate, starsCount = 5 }) => {
         <HStack  >
             {Array.from({ length: starsCount }, (_, index) => {
                 const value = (index + 1) * starNominal;
-                return calculateStar(value);
+                return useMemo(() => calculateStar(value), [maxRate, rate, starsCount]);
             })}
         </HStack>
     );
