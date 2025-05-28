@@ -2,6 +2,7 @@ import { Button, Menu, Portal } from "@chakra-ui/react";
 import { GameQuery } from "../model/GameQuery";
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { orderByItems } from "../config/config";
 
 interface Props {
     onSelectSort: (sort: string) => void;
