@@ -26,7 +26,6 @@ const PlatformSelector: React.FC<Props> = ({onSelectPlatform, selectedPlatform})
 
    :
     <Menu.Root>
-
       <Menu.Trigger marginBottom={3} asChild>
         <Button variant="outline" size="sm" onClick={() => setIsOpen(!isOpen)}>
           {selectedPlatform ? selectedPlatform.name : "Platform"}

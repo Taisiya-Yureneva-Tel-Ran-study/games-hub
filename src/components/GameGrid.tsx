@@ -2,15 +2,14 @@ import { SimpleGrid, Spinner } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import { ErrorBox } from "./ErrorBox";
 import useGame from "../hooks/useGame";
-import { Platform } from "../model/Platform";
+import { GameQuery } from "../model/GameQuery";
 
 interface Props {
-    selectedGenre: string | null;
-    selectedPlatform: Platform | null;
+    query: GameQuery;
 }
 
-const GameGrid: React.FC<Props> = ({selectedGenre, selectedPlatform}) => {
-    const {error, data, isLoading} = useGame(selectedGenre, selectedPlatform);
+const GameGrid: React.FC<Props> = ({query}) => {
+    const {error, data, isLoading} = useGame(query);
     const games = data;
     
     return isLoading ? <Spinner size="xl" color="green.100" /> :
@@ -21,7 +20,6 @@ const GameGrid: React.FC<Props> = ({selectedGenre, selectedPlatform}) => {
                 md: 3}
             } gap="5" maxHeight="80vh" overflow="auto">
                 {games?.map(g => <GameCard key={g.id} game={g} />
-
                 )}
             </SimpleGrid> 
 }

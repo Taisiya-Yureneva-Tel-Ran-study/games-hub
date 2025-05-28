@@ -1,9 +1,11 @@
 import { Game } from "../model/FetchGamesTypes";
-import { Platform } from "../model/Platform";
 import useData from "./useData";
+import { GameQuery } from "../model/GameQuery";
 
-function useGame(genre: string | null, platform: Platform | null): {data: Game[], error: string, isLoading: boolean} {
-    return useData<Game>('/games', {params: {genres: genre, parent_platforms: platform?.id}}, [genre, platform]); // useData is a custom hook that fetches data from the API
+function useGame(query: GameQuery): {data: Game[], error: string, isLoading: boolean} {
+    return useData<Game>('/games', {params: {genres: query.genre, 
+        parent_platforms: query.platform?.id,
+        ordering: query.sortBy}}, [query]); 
 };
 
 export default useGame;
