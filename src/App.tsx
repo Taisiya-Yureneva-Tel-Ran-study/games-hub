@@ -7,12 +7,14 @@ import { useState } from 'react'
 import PlatformSelector from './components/PlatformSelector'
 import { GameQuery } from './model/GameQuery'
 import OrderSelector from './components/OrderSelector'
+import GenreSelector from './components/GenreSelector'
 
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({
     genre: null,
     platform: null,
-    sortBy: null
+    sortBy: null,
+    searchText: null
   });
 
   return (
@@ -21,7 +23,8 @@ function App() {
       md: "'nav nav' 'aside main'"
     }}>
       <GridItem area="nav">
-        <NavBar />
+        <NavBar onGetSearchText={(text) => {
+          setGameQuery({...gameQuery, searchText: text})}} />
       </GridItem>
       <Stack hideBelow="md" >
         <GridItem area="aside">
@@ -45,6 +48,12 @@ function App() {
             setGameQuery({ ...gameQuery, sortBy: s });
           }}
             gameQuery={gameQuery} />
+          <GenreSelector 
+            onSelectGenre={(g) => {
+              setGameQuery({...gameQuery, genre: g });
+            }} 
+            selectedGenre={gameQuery.genre}
+          />
         </HStack>
         <GameGrid
           query={gameQuery}

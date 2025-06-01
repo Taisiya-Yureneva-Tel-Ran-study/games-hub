@@ -11,7 +11,7 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
     return (
         <Card.Root maxW="sm" overflow="hidden">
             <Image
-                src={game.background_image}
+                src={game.background_image || '/No_Image_Available'}
                 alt={game.name}
                 height={"100%"}
             />
@@ -19,16 +19,17 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
                 <Card.Title justifyContent="flex-end" position={"relative"}>
                     {game.name}
                     <Float>
+                      {game.metacritic &&
                         <Badge colorPalette={game.metacritic > 90 ? "green" : "gray"}
                             size='sm'
                             variant={game.metacritic > 90 ? "solid" : "subtle"}
                             borderRadius="full">
                             {game.metacritic}
-                        </Badge>
+                        </Badge>}
                     </Float>
                 </Card.Title>
                 <Box h="12" overflow="auto" gap="2">
-                    {game.platforms.map((p) => {
+                    {game.platforms?.map((p) => {
                         return <Badge key={p.platform.id}>{p.platform.name}</Badge>
                     })}
                 </Box>
