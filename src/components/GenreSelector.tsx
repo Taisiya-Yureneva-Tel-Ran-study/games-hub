@@ -3,17 +3,14 @@ import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import MotionComponent from "./MotionComponent";
 import useGenre from "../hooks/useGenre";
+import useGameQueryStore from "../state-manager/store";
 
-interface Props {
-    onSelectGenre: (genre: string) => void;
-    selectedGenre?: string | null;
-}
-
-const GenreSelector: React.FC<Props> = ({onSelectGenre, selectedGenre}) => {
+const GenreSelector: React.FC = () => {
     // TODO: use isLoading
   const { data, error, isLoading } = useGenre();
   const genres = data;
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const {genre, setGenre} = useGameQueryStore();
 
   return (
     error ? <Menu.Root > 
@@ -26,9 +23,9 @@ const GenreSelector: React.FC<Props> = ({onSelectGenre, selectedGenre}) => {
 
    :
     <Menu.Root  onExitComplete={() => setIsOpen(false)} >
-      <Menu.Trigger marginBottom={3} asChild hideFrom={"md"}>
+      <Menu.Trigger marginBottom={3} asChild width="100%">
         <Button variant="outline" size="sm" onClick={() => setIsOpen(!isOpen)} >
-          {selectedGenre ? selectedGenre : "Genre"}
+          {genre ? genre : "Genre"}
           {isOpen ? 
             <FaChevronUp />
             : <FaChevronDown />}
@@ -39,7 +36,7 @@ const GenreSelector: React.FC<Props> = ({onSelectGenre, selectedGenre}) => {
           <MotionComponent duration={0.5}>
           <Menu.Content>
             {genres.map((g) => <Menu.Item key={g.id} value={g.slug} onClick={() => {
-                onSelectGenre(g.slug); 
+                setGenre(g.slug); 
                 setIsOpen(false);}}>
               {g.name} 
             </Menu.Item>

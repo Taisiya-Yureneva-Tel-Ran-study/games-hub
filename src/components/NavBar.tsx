@@ -3,16 +3,11 @@ import { ColorModeButton } from './ui/color-mode'
 import SearchBar from './SearchBar';
 import { FC } from 'react';
 
-interface Props {
-    onGetSearchText: (text: string) => void;
-}
-
-const NavBar: FC<Props> = ({onGetSearchText}) => {
+const NavBar: FC = () => {
     return <Box>
         <HStack justifyContent={"space-between"} >
             <Image src="/image.png" boxSize="10" />
-            <SearchBar onSubmitSearch={(text: string) => {
-                onGetSearchText(text)}}/>
+            <SearchBar />
             <ColorModeButton float="right"/>
         </HStack>
     </Box>

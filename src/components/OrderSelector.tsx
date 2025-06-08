@@ -1,22 +1,18 @@
 import { Button, Menu, Portal } from "@chakra-ui/react";
-import { GameQuery } from "../model/GameQuery";
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { orderByItems } from "../config/config";
 import MotionComponent from "./MotionComponent";
+import useGameQueryStore from "../state-manager/store";
 
-interface Props {
-    onSelectSort: (sort: string) => void;
-    gameQuery: GameQuery;
-}
-
-const OrderSelector: React.FC<Props> = ({ onSelectSort, gameQuery }) => {
+const OrderSelector: React.FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const {sortBy, setSorting} = useGameQueryStore();
 
     return <Menu.Root onExitComplete={() => setIsOpen(false)}>
         <Menu.Trigger asChild marginBottom={3} >
             <Button variant="outline" size="sm" onClick={() => setIsOpen(!isOpen)}>
-                {gameQuery.sortBy ? orderByItems.items.find(item => item.value === gameQuery.sortBy)?.displayedName : "Order by"}
+                {sortBy ? orderByItems.items.find(item => item.value === sortBy)?.displayedName : "Order by"}
                 {isOpen ? <FaChevronUp /> : <FaChevronDown />}
             </Button>
         </Menu.Trigger>
@@ -30,7 +26,7 @@ const OrderSelector: React.FC<Props> = ({ onSelectSort, gameQuery }) => {
                             key={item.value}
                             value={item.value}
                             onClick={() => {
-                                onSelectSort(item.value);
+                                setSorting(item.value);
                                 setIsOpen(false);
                             }}
                         >{item.displayedName}</Menu.Item>

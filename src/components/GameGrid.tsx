@@ -2,14 +2,18 @@ import { SimpleGrid, Spinner } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import { ErrorBox } from "./ErrorBox";
 import useGame from "../hooks/useGame";
-import { GameQuery } from "../model/GameQuery";
+import useGameQueryStore from "../state-manager/store";
+import { useMemo } from "react";
 
-interface Props {
-    query: GameQuery;
-}
+const GameGrid: React.FC = () => {
+    const {genre, platform, sortBy, searchText} = useGameQueryStore();
 
-const GameGrid: React.FC<Props> = ({query}) => {
-    const {error, data, isLoading} = useGame(query);
+  const query = useMemo(
+    () => ({ genre, platform, sortBy, searchText }),
+    [genre, platform, sortBy, searchText]
+  );
+
+  const { error, data, isLoading } = useGame({ query });
     const games = data;
     
     return isLoading ? <Spinner size="xl" color="green.100" /> :
