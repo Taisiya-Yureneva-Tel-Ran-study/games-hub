@@ -7,10 +7,10 @@ import useGameQueryStore from "../state-manager/store";
 
 const GenreSelector: React.FC = () => {
     // TODO: use isLoading
-  const { data, error, isLoading } = useGenre();
-  const genres = data;
+  const { data:genres, error, isLoading } = useGenre();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const {genre, setGenre} = useGameQueryStore();
+  const genre = useGameQueryStore(s => s.genre);
+  const setGenre = useGameQueryStore(s => s.setGenre);
 
   return (
     error ? <Menu.Root > 
@@ -35,7 +35,7 @@ const GenreSelector: React.FC = () => {
         <Menu.Positioner>
           <MotionComponent duration={0.5}>
           <Menu.Content>
-            {genres.map((g) => <Menu.Item key={g.id} value={g.slug} onClick={() => {
+            {genres?.map((g) => <Menu.Item key={g.id} value={g.slug} onClick={() => {
                 setGenre(g.slug); 
                 setIsOpen(false);}}>
               {g.name} 

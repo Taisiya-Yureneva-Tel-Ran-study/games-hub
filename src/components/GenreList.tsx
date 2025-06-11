@@ -17,7 +17,7 @@ const GenreList: React.FC = () => {
     }
 
     return isLoading ? <Spinner size="xl" color="green.100" /> :
-        error ? <ErrorBox error={error} /> :
+        error ? <ErrorBox error={error.message} /> :
             <List.Root overflowY={"auto"} variant={"plain"} padding={2} maxHeight={"80vh"}>
                 {genres?.map(g => <List.Item key={g.id}>
                     <Avatar.Root size="xs">

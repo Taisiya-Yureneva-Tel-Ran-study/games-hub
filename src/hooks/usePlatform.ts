@@ -1,8 +1,8 @@
 import { Platform } from "../model/Platform";
-import useData from "./useData";
+import useUseQuery from "./useUseQuery";
 
-function usePlatform(): {data: Platform[], error: string, isLoading: boolean} {
-    return useData<Platform>('/platforms/lists/parents');
+function usePlatform() {
+    return useUseQuery<Platform> (["platforms"],"/platfoms/lists/parents");
 };
 
 export default usePlatform;

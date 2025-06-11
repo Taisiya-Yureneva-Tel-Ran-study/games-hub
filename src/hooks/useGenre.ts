@@ -1,8 +1,8 @@
 import { Genre } from "../model/Genre";
-import useData from "./useData";
+import useUseQuery from "./useUseQuery";
 
-function useGenre(): {data: Genre[], error: string, isLoading: boolean} {
-    return useData<Genre>('/genres');
+function useGenre() {
+    return useUseQuery<Genre> (["genres"], "/genres")
 };
 
 export default useGenre;

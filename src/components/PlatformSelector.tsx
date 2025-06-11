@@ -35,7 +35,7 @@ const PlatformSelector: React.FC = () => {
         <Menu.Positioner>
           <MotionComponent duration={0.5}>
           <Menu.Content>
-            {platforms.map((p) => <Menu.Item key={p.id} value={p.slug} onClick={() => {
+            {platforms?.map((p) => <Menu.Item key={p.id} value={p.slug} onClick={() => {
                 setPlatform(p); 
                 setIsOpen(false);}}>
               {p.name} 

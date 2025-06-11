@@ -17,3 +17,5 @@ During loading of game cards and genre list spinners are shown.
 Game Cards are enhanced with rating. The Rater component is reusable, number of stars may vary, maximal rating can be any number.
 
 #### HW #41 Added Zustand store and removed all the Props.
+
+#### HW #42 Added tanstack React Query. All the hooks now use tanstack query via useUseQuery.
